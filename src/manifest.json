@@ -1,0 +1,50 @@
+{
+  "manifest_version": 2,
+  "name": "sc4pac browser extension",
+  "version": "1.0",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "browser-extension@sc4pac"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "https://community.simtropolis.com/*",
+    "https://www.sc4evermore.com/*",
+    "https://cdn.jsdelivr.net/*",
+    "http://localhost/*",
+    "https://*/*/channel/sc4pac-channel-contents.json"
+  ],
+  "options_ui": {
+    "page": "html/settings.html",
+    "browser_style": true
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://community.simtropolis.com/files/file/*",
+        "https://www.sc4evermore.com/index.php/downloads/download/*"
+      ],
+      "css": ["css/extension.css"],
+      "js": [
+        "js/errorHandler.js", 
+        "js/logger.js",
+         
+        "js/helper/settingsHelper.js",  
+        "js/helper/baseExchangeHelper.js", 
+        "js/helper/stHelper.js", 
+        "js/helper/sc4eHelper.js", 
+        "js/helper/uiHelper.js", 
+        "js/helper/buttonHelper.js", 
+        "js/helper/sebaHelper.js", 
+        "js/helper/exchangeHelper.js", 
+        "js/helper/channelHelper.js", 
+        "js/helper/sc4pacHelper.js", 
+        "js/helper/apiHelper.js",  
+        "js/extensionKernel.js",
+        "js/extension.js"
+      ]
+    }
+  ]
+}
