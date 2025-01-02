@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>sc4pac extension settings</title>
+    <style>
+      :root {
+        --color-success: #058b00;
+        --color-success-hover: #046800;
+        --color-warn: #ffa500;
+        --color-warn-hover: #ff8c00;
+        --color-error: #d70022;
+        --color-error-hover: #b1001c;
+        --color-primary: #0060df;
+        --color-primary-hover: #0250bb;
+        --color-border: #ccc;
+        --color-white: white;
+        --color-info: #0060df;
+        
+        --spacing-xs: 5px;
+        --spacing-sm: 8px;
+        --spacing-md: 10px;
+        --spacing-lg: 15px;
+        --spacing-xl: 20px;
+        
+        --border-radius: 4px;
+
+        --tooltip-bg: #333;
+        --tooltip-text: var(--color-white);
+      }
+
+      body {
+        padding: var(--spacing-xl);
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      .form-group {
+        margin-bottom: var(--spacing-lg);
+      }
+
+      label {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+        font-weight: bold;
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: var(--spacing-sm);
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius);
+      }
+
+      .info-tooltip {
+        color: var(--color-info);
+        cursor: help;
+        font-size: 14px;
+        margin-left: var(--spacing-xs);
+        position: relative;
+        display: inline-block;
+      }
+
+      .info-tooltip:hover::after {
+        content: attr(title);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 100%;
+        padding: var(--spacing-sm);
+        background: var(--tooltip-bg);
+        color: var(--tooltip-text);
+        border-radius: var(--border-radius);
+        font-size: 12px;
+        white-space: nowrap;
+        z-index: 1000;
+        font-weight: normal;
+      }
+
+      input:invalid, textarea:invalid {
+        border-color: var(--color-error);
+      }
+
+      input:invalid + .error-message, textarea:invalid + .error-message {
+        display: block;
+      }
+
+      .error-message {
+        color: var(--color-error);
+        display: none;
+      }
+
+      .server-group {
+        display: flex;
+        gap: var(--spacing-lg);
+      }
+
+      .server-group .form-group {
+        flex: 1;
+      }
+
+      .button-group {
+        display: flex;
+        gap: var(--spacing-md);
+      }
+
+      button {
+        color: var(--color-white);
+        border: none;
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+      }
+      
+      button.success {
+        background: var(--color-success);
+      }
+
+      button.success:hover {
+        background: var(--color-success-hover);
+      }
+
+      button.warn {
+        background: var(--color-warn);
+      }
+
+      button.warn:hover {
+        background: var(--color-warn-hover);
+      }
+
+      button.danger {
+        background: var(--color-error);
+      }
+
+      button.danger:hover {
+        background: var(--color-error-hover);
+      }
+
+      .actions-container {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+      }
+
+      .status-container {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        overflow-x: auto;
+      }
+      
+      .status-success, .status-error {
+        font-weight: bold;
+      }
+
+      .status-success {
+        color: var(--color-success);
+      }
+
+      .status-error {
+        color: var(--color-error);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="settings-form">
+      <div class="server-group">
+        <span class="form-group">
+          <label for="server-hostname">sc4pac server hostname</label>
+          <input type="text" 
+            id="server-hostname" 
+            required 
+            title="The hostname of the server. Must be a valid URL."
+          >
+          <div class="error-message">Please enter a valid hostname.</div>
+        </span>
+        <span class="form-group">
+          <label for="server-port">sc4pac server port</label>
+          <input type="number" 
+            id="server-port" 
+            required 
+            title="The port of the server. Must be between 0 and 65535."
+          >
+          <div class="error-message">Port must be between 0 and 65535.</div>
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="channels">
+          Channels (one URL per line)
+          <span class="info-tooltip" title="Local paths (file:// protocol) are not supported. URLs must use http:// or https://">ⓘ</span>
+        </label>
+        <textarea id="channels" 
+          rows="4" 
+          style="width: 100%" 
+          required 
+          title="Enter valid URLs, one per line."
+        ></textarea>
+        <div class="error-message">Please enter valid URLs, one per line.</div>
+      </div>
+      <div class="actions-container">
+        <div class="button-group">
+          <button type="submit" class="success">Save</button>
+          <button type="button" id="restore-button" class="warn">Restore</button>
+          <button type="button" id="reset-button" class="danger">Reset</button>
+        </div>
+        <div id="status-container" class="status-container"></div>
+      </div>
+    </form>
+    <script src="../js/errorHandler.js"></script>
+    <script src="../js/helper/settingsHelper.js"></script>
+    <script src="../js/helper/settingsPageHelper.js"></script>
+    <script src="../js/helper/settingsMappingHelper.js"></script>
+    <script src="../js/settings.js"></script>
+  </body>
+</html>
