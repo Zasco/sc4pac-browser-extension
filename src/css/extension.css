@@ -1,0 +1,60 @@
+/* Button Base */
+.sc4pac-be .btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out,
+        box-shadow .15s ease-in-out;
+}
+
+/* Primary Button Style */
+.sc4pac-be .btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.sc4pac-be .btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+/* Small Button */
+.sc4pac-be .btn-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}
+
+/* Button Group */
+.sc4pac-be .btn-group {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.sc4pac-be .btn-group > .btn {
+    position: relative;
+    flex: 1 1 auto;
+}
+
+.sc4pac-be .btn-group > .btn:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.sc4pac-be .btn-group > .btn:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
