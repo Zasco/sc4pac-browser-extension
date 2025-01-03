@@ -56,7 +56,7 @@ You can configure these settings through the extension's options page in your br
 
 This ensures the extension can communicate with your local *sc4pac* installation.
 
-# TODO
+## TO-DO
 - Support multiple *sc4pac* packages per exchange file
   - Update package mapping structure
   - Update UI to show all available packages
@@ -66,9 +66,10 @@ This ensures the extension can communicate with your local *sc4pac* installation
 - Use configuration from profiles.
 - Add server API version support.
 - Use file IDs from channels instead of from **sebarynissen/sc4pac-helpers**.
+- Add caching of fetched contents.
 
 ### Package reference detection
-- Implement scanning of files description for package with detection from
+- Implement scanning of comments and files description for package with detection from
   - Package ID pattern (group:name)
   - File URL
 - Add inline buttons next to matched references
