@@ -110,11 +110,9 @@ const apiHelper = {
                     body: JSON.stringify(payload)
                 }
             ;
-            response = await fetch(endpoint, requestOptions);
+            const response = await fetch(endpoint, requestOptions);
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
             extensionKernel.log('debug', `"${action}" request to sc4pac API successful:`, response);
             
