@@ -59,7 +59,7 @@ const sc4pacHelper = {
     async packageIsExplicitlyAdded(packageId/* , profileId */) {
         const packageInfo = await apiHelper.makeRequest(apiHelper.INFO_PACKAGE_ACTION, packageId);
         try {
-            return packageInfo.local.statuses[packageId].explicit;
+            return packageInfo.local.statuses[packageId] && packageInfo.local.statuses[packageId].explicit;
         }
         catch (error) {
             extensionKernel.log('error', `Could not get package ${packageId} added status.`, error);
