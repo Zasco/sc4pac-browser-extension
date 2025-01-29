@@ -63,7 +63,7 @@ const sc4pacHelper = {
         }
         catch (error) {
             extensionKernel.log('error', `Could not get package ${packageId} added status.`, error);
-            throw errorHandler(`Unable to get package added status from it's server infos.`, error)
+            throw errorHandler.getCausedError(`Unable to get package added status from it's server infos.`, error)
         }
     },
 
