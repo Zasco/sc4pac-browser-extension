@@ -31,7 +31,7 @@ const SettingsHelper = {
 
     /**
      * Gets the appropriate storage API for the current browser.
-     * @returns {browser.storage.StorageArea|chrome.storage.StorageArea} The storage API instance.
+     * @returns {browser.storage.StorageArea | chrome.storage.StorageArea} The storage API instance.
      */
     getStorage() {
         try {

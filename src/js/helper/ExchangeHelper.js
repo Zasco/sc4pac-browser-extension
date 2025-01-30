@@ -23,7 +23,7 @@ const ExchangeHelper = {
     /**
      * Returns the packages for a specific exchange.
      * @param {string} exchangeId - The ID of the exchange to get the packages for.
-     * @returns {Object} The exchange packages.
+     * @returns {Promise<Object>} The exchange packages.
      */
     async getPackagesForExchange(exchangeId) {
         try {
@@ -144,7 +144,7 @@ const ExchangeHelper = {
 
     /**
      * Checks if a file ID exists in the file list.
-     * @param {int} packageId - The file ID of the package to check.
+     * @param {number} packageId - The file ID of the package to check.
      * @param {Object} packages - The object containing package information.
      * @returns {boolean} True if the package exists in the list, false otherwise.
      */

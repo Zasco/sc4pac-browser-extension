@@ -30,7 +30,7 @@ const BaseExchangeHelper = {
 
     /**
      * Checks if a file is supported by the exchange and is in a channel listed in the settings.
-     * @param {string} fileIntId - The file integer ID to check.
+     * @param {number} fileIntId - The file integer ID to check.
      * @returns {Promise<boolean>} True if the file is supported and in a listed channel, false otherwise.
      */
     async isSupportedFile(fileIntId) {
@@ -45,7 +45,7 @@ const BaseExchangeHelper = {
 
     /**
      * Returns if the buttons are displayed for a specific file.
-     * @param {string} fileIntId - The file integer ID to check.
+     * @param {number} fileIntId - The file integer ID to check.
      * @returns {Promise<boolean>} True if the buttons are displayed, false otherwise.
      */
     async buttonsAreDisplayed(fileIntId) {
@@ -67,7 +67,7 @@ const BaseExchangeHelper = {
         const mainFileIntId = this.getIntIdFromFullId(mainFileFullId);
         const packageId = (await this.getPackages())[mainFileIntId];
         
-        if (this.buttonsAreDisplayed(mainFileIntId)) {
+        if (await this.buttonsAreDisplayed(mainFileIntId)) {
             this.adjustTitleElement(titleElement);
             titleElement.appendChild(ButtonHelper.createButtonGroup(packageId, 'main-buttons'));
         }
@@ -93,9 +93,7 @@ const BaseExchangeHelper = {
         // Select the last segment without the query parameters as the file full ID.
         const fileFullId = segments[segments.length - 1].split('?')[0];
     
-        if (!fileFullId) {
-            throw new Error('No file ID found in URL: ', fileUrl);
-        }
+        if (!fileFullId) throw new Error(`No file ID found in URL: ${fileUrl}`);
         
         return fileFullId;
     },
