@@ -1,4 +1,4 @@
-const uiHelper = {
+const UIHelper = {
     EXTENSION_CLASS: 'sc4pac-be',
     
     /**

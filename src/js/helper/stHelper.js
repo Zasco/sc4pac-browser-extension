@@ -1,5 +1,5 @@
 const stHelper = {
-    ...baseExchangeHelper,
+    ...BaseExchangeHelper,
 
     EXCHANGE_ID: 'st',
     EXCHANGE_HOSTNAME: 'community.simtropolis.com',

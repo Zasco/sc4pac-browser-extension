@@ -1,4 +1,4 @@
-const extensionKernel = {
+const ExtensionKernel = {
     /**
      * Get the log prefix for the extension.
      * @returns {string} The log prefix for the extension.
@@ -19,12 +19,12 @@ const extensionKernel = {
         const hostname = window.location.hostname;
         let exchangeId;
     
-        if (!exchangeHelper.isHostnameSupported(hostname)) return;
+        if (!ExchangeHelper.isHostnameSupported(hostname)) return;
         
         this.log('info', `%b${hostname}%b is a supported exchange.`)
     
         try {
-            exchangeId = exchangeHelper.getExchangeIdForHostname(hostname);
+            exchangeId = ExchangeHelper.getExchangeIdForHostname(hostname);
         } catch (error) {
             this.oldLog('error', error.message);
             return;
@@ -46,7 +46,7 @@ const extensionKernel = {
                 return;
         }
     
-        buttonHelper.init(siteHelper);
+        ButtonHelper.init(siteHelper);
         
         // Get the file ID from the current URL
         const fullId = siteHelper.extractFileFullIdFromUrl(window.location.href);
@@ -75,6 +75,6 @@ const extensionKernel = {
     log(type, message, content) {
         let prefix = this.getLogPrefix();
         if (type === 'debug') prefix += '(debug) ';
-        return logger.log(type, prefix + message, content);
+        return Logger.log(type, prefix + message, content);
     },
 }

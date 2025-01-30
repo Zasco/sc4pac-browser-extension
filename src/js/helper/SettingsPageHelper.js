@@ -1,9 +1,9 @@
-const settingsPageHelper = {
+const SettingsPageHelper = {
     FORM_ID: 'settings-form',
     INPUT_IDS: {
-        HOSTNAME: settingsHelper.SETTINGS.SERVER_HOSTNAME, 
-        PORT: settingsHelper.SETTINGS.SERVER_PORT, 
-        CHANNELS: settingsHelper.SETTINGS.CHANNELS, 
+        HOSTNAME: SettingsHelper.SETTINGS.SERVER_HOSTNAME, 
+        PORT: SettingsHelper.SETTINGS.SERVER_PORT, 
+        CHANNELS: SettingsHelper.SETTINGS.CHANNELS, 
     },
     RESTORE_BUTTON_ID: 'restore-button',
     RESET_BUTTON_ID: 'reset-button',
@@ -75,7 +75,7 @@ const settingsPageHelper = {
 
             return form;
         } catch (error) {
-            throw errorHandler.getCausedError('Settings form could not be initialized.', error);
+            throw ErrorHandler.getCausedError('Settings form could not be initialized.', error);
         }
     },
 
@@ -88,10 +88,10 @@ const settingsPageHelper = {
         try {
             this.setPlaceholders();
 
-            const settingsValidity = settingsHelper.SETTINGS_VALIDITY;
-            this.getElement(this.INPUT_IDS.HOSTNAME).setAttribute('pattern', settingsValidity[settingsHelper.SETTINGS.SERVER_HOSTNAME]['pattern']);
-            this.getElement(this.INPUT_IDS.PORT).setAttribute('min', settingsValidity[settingsHelper.SETTINGS.SERVER_PORT]['min']);
-            this.getElement(this.INPUT_IDS.PORT).setAttribute('max', settingsValidity[settingsHelper.SETTINGS.SERVER_PORT]['max']);
+            const settingsValidity = SettingsHelper.SETTINGS_VALIDITY;
+            this.getElement(this.INPUT_IDS.HOSTNAME).setAttribute('pattern', settingsValidity[SettingsHelper.SETTINGS.SERVER_HOSTNAME]['pattern']);
+            this.getElement(this.INPUT_IDS.PORT).setAttribute('min', settingsValidity[SettingsHelper.SETTINGS.SERVER_PORT]['min']);
+            this.getElement(this.INPUT_IDS.PORT).setAttribute('max', settingsValidity[SettingsHelper.SETTINGS.SERVER_PORT]['max']);
             
             this.initChannelsInput();
 
@@ -101,7 +101,7 @@ const settingsPageHelper = {
 
             return true;
         } catch (error) {
-            throw errorHandler.getCausedError('Could not initialize inputs.', error);
+            throw ErrorHandler.getCausedError('Could not initialize inputs.', error);
         }
     },
 
@@ -112,7 +112,7 @@ const settingsPageHelper = {
     initChannelsInput() {
         try {
             const channelsInput = this.getElement(this.INPUT_IDS.CHANNELS);
-            const urlPattern = new RegExp(settingsHelper.SETTINGS_VALIDITY[settingsHelper.SETTINGS.CHANNELS].pattern);
+            const urlPattern = new RegExp(SettingsHelper.SETTINGS_VALIDITY[SettingsHelper.SETTINGS.CHANNELS].pattern);
         
             channelsInput.addEventListener('input', () => {
                 const lines = channelsInput.value.split('\n').filter(line => line.trim());
@@ -241,7 +241,7 @@ const settingsPageHelper = {
             this.getInputElements();
             return true;
         } catch (error) {
-            const missingInputError = errorHandler.getCausedError('An input element is missing from the form.', error);
+            const missingInputError = ErrorHandler.getCausedError('An input element is missing from the form.', error);
 
             // Display the error in status on form submit as a clue.
             form.addEventListener('submit', async (event) => {
@@ -262,8 +262,8 @@ const settingsPageHelper = {
             const basePlaceholder = 'Default: ';
             
             Object.entries(inputElements).forEach(([inputId, element]) => {
-                const setting = settingsMappingHelper.getSettingForInput(inputId);
-                element.placeholder = `${basePlaceholder}${settingsHelper.DEFAULT_SETTINGS[setting]}`;
+                const setting = SettingsMappingHelper.getSettingForInput(inputId);
+                element.placeholder = `${basePlaceholder}${SettingsHelper.DEFAULT_SETTINGS[setting]}`;
             });
             return true;
         } catch (error) {
@@ -279,14 +279,14 @@ const settingsPageHelper = {
     async saveSettingsFromInputs() {
         try {
             const inputValues = this.getInputValues();
-            const settingsValues = settingsMappingHelper.mapInputValuesToSettings(inputValues);
-            await settingsHelper.saveSettings(settingsValues);
+            const settingsValues = SettingsMappingHelper.mapInputValuesToSettings(inputValues);
+            await SettingsHelper.saveSettings(settingsValues);
             
             this.addToStatusQueue('Settings saved.', this.STATUS_SUCCESS);
             return true;
         }
         catch (error) {
-            return errorHandler.handleSettingsError(
+            return ErrorHandler.handleSettingsError(
                 error, 
                 'Error while saving settings.', 
                 'Settings save failed.'
@@ -299,15 +299,15 @@ const settingsPageHelper = {
      */
     async restoreSettingsToInputs() {
         try {
-            const settings = await settingsHelper.getSettings();
-            const inputValues = settingsMappingHelper.mapSettingsToInputValues(settings);
+            const settings = await SettingsHelper.getSettings();
+            const inputValues = SettingsMappingHelper.mapSettingsToInputValues(settings);
             
             await this.setInputValues(inputValues);
 
             this.addToStatusQueue('Settings restored.', this.STATUS_SUCCESS);
             return true;
         } catch (error) {
-            return errorHandler.handleSettingsError(
+            return ErrorHandler.handleSettingsError(
                 error, 
                 'Settings could not be restored.', 
                 'Settings NOT restored.', 
@@ -321,17 +321,17 @@ const settingsPageHelper = {
      */
     async resetSettings() {
         try {
-            await settingsHelper.resetSettings();
+            await SettingsHelper.resetSettings();
 
-            const settings = await settingsHelper.getSettings();
-            const inputValues = settingsMappingHelper.mapSettingsToInputValues(settings);
+            const settings = await SettingsHelper.getSettings();
+            const inputValues = SettingsMappingHelper.mapSettingsToInputValues(settings);
             
             await this.setInputValues(inputValues);
 
             this.addToStatusQueue('Settings reset.', this.STATUS_SUCCESS);
             return true;
         } catch (error) {
-            return errorHandler.handleSettingsError(
+            return ErrorHandler.handleSettingsError(
                 error, 
                 'Settings could not be reset.', 
                 'Settings NOT reset.', 
@@ -345,13 +345,13 @@ const settingsPageHelper = {
      */
     async setDefaultInputValues() {
         try {
-            const defaultSettingsValues = settingsHelper.DEFAULT_SETTINGS;
-            const defaultInputValues = settingsMappingHelper.mapSettingsToInputValues(defaultSettingsValues)
+            const defaultSettingsValues = SettingsHelper.DEFAULT_SETTINGS;
+            const defaultInputValues = SettingsMappingHelper.mapSettingsToInputValues(defaultSettingsValues)
 
             try {
                 await this.setInputValues(defaultInputValues);
             } catch (error) {
-                throw errorHandler.getCausedError('Could not set default values in inputs.', error);
+                throw ErrorHandler.getCausedError('Could not set default values in inputs.', error);
             }
     
             //settingsPageHelper.addToStatusQueue('Reset succeeded.', settingsPageHelper.STATUS_SUCCESS);
@@ -422,7 +422,7 @@ const settingsPageHelper = {
         try {
             return this.getElement(inputId).value;
         } catch (error) {
-            throw errorHandler.getCausedError(`Could not get input value for "${inputId}".`, error);
+            throw ErrorHandler.getCausedError(`Could not get input value for "${inputId}".`, error);
         }
     },
 
@@ -438,7 +438,7 @@ const settingsPageHelper = {
                     .map(id => [id, this.getInputValue(id)])
             );
         } catch (error) {
-            throw errorHandler.getCausedError('Could not get input values.', error);
+            throw ErrorHandler.getCausedError('Could not get input values.', error);
         }
     },
 
@@ -456,7 +456,7 @@ const settingsPageHelper = {
             inputElement.dispatchEvent(new Event('input'));
             return true;
         } catch (error) {
-            throw errorHandler.getCausedError(`Could not set input value for "${inputId}".`, error);
+            throw ErrorHandler.getCausedError(`Could not set input value for "${inputId}".`, error);
         }
     },
 
@@ -471,7 +471,7 @@ const settingsPageHelper = {
                 await this.setInputValue(inputId, value);
             }
         } catch (error) {
-            throw errorHandler.getCausedError('Could not set input values.', error);
+            throw ErrorHandler.getCausedError('Could not set input values.', error);
         }
     },
 
@@ -490,7 +490,7 @@ const settingsPageHelper = {
             try {
                 statusContainer = this.getStatusContainer();
             } catch (error) {
-                throw errorHandler.getCausedError('Could not retrieve status container.', error);
+                throw ErrorHandler.getCausedError('Could not retrieve status container.', error);
             }
             
             const statusElement = document.createElement('span');

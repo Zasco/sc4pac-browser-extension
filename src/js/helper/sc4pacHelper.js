@@ -5,8 +5,8 @@ const sc4pacHelper = {
      * @throws {Error} If server hostname or port is not configured.
      */
     async getServerUrl() {
-        const hostname = await settingsHelper.getSetting(settingsHelper.SETTINGS.SERVER_HOSTNAME);
-        const port = await settingsHelper.getSetting(settingsHelper.SETTINGS.SERVER_PORT);
+        const hostname = await SettingsHelper.getSetting(SettingsHelper.SETTINGS.SERVER_HOSTNAME);
+        const port = await SettingsHelper.getSetting(SettingsHelper.SETTINGS.SERVER_PORT);
 
         if (!hostname || !port) {
             throw new Error('Server hostname or port not configured');
@@ -30,9 +30,9 @@ const sc4pacHelper = {
      */
     async getServerStatus() {
         try {
-            return await apiHelper.makeRequest(apiHelper.SERVER_STATUS_ACTION);
+            return await APIHelper.makeRequest(APIHelper.SERVER_STATUS_ACTION);
         } catch (error) {
-            throw errorHandler.getCausedError('Could not get server status.', error);
+            throw ErrorHandler.getCausedError('Could not get server status.', error);
         }
     },
 
@@ -57,13 +57,13 @@ const sc4pacHelper = {
      * @throws {Error} If the package added status cannot be retrieved.
      */
     async packageIsExplicitlyAdded(packageId/* , profileId */) {
-        const packageInfo = await apiHelper.makeRequest(apiHelper.INFO_PACKAGE_ACTION, packageId);
+        const packageInfo = await APIHelper.makeRequest(APIHelper.INFO_PACKAGE_ACTION, packageId);
         try {
             return packageInfo.local.statuses[packageId] && packageInfo.local.statuses[packageId].explicit;
         }
         catch (error) {
-            extensionKernel.log('error', `Could not get package ${packageId} added status.`, error);
-            throw errorHandler.getCausedError(`Unable to get package added status from it's server infos.`, error)
+            ExtensionKernel.log('error', `Could not get package ${packageId} added status.`, error);
+            throw ErrorHandler.getCausedError(`Unable to get package added status from it's server infos.`, error)
         }
     },
 

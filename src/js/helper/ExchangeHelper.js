@@ -1,4 +1,4 @@
-const exchangeHelper = {
+const ExchangeHelper = {
     /**
      * Function to get exchange ID from hostname
      * @param {string} hostname - The hostname to get the exchange ID for.
@@ -70,8 +70,8 @@ const exchangeHelper = {
      */
     async getPackagesFromUrl(url) {
         try {
-            sebaHelper.checkIsValidListUrl(url);
-            const jsDelivrUrl = new URL(sebaHelper.convertToJsDelivrUrl(url));
+            SebaHelper.checkIsValidListUrl(url);
+            const jsDelivrUrl = new URL(SebaHelper.convertToJsDelivrUrl(url));
             const response = await fetch(jsDelivrUrl.toString());
             if (!response.ok) {
                 throw new Error(`Failed to fetch the module: ${response.statusText}`);
@@ -84,7 +84,7 @@ const exchangeHelper = {
             }
 
             let dataString = dataMatches[1];
-            let data = sebaHelper.evalString(dataString);
+            let data = SebaHelper.evalString(dataString);
 
             if (Array.isArray(data)) {
                 return data;

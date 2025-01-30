@@ -1,4 +1,4 @@
-const sebaHelper = {
+const SebaHelper = {
     /**
      * Converts a string containing a JS object or array notation to its corresponding JavaScript object or array
      * @param {string} objString - String containing object or array notation (can handle single quotes, unquoted properties)

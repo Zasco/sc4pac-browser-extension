@@ -1,5 +1,5 @@
 // See https://memo33.github.io/sc4pac/#/api
-const apiHelper = {
+const APIHelper = {
     OPEN_PACKAGE_ACTION: 'packages.open',
     ADD_PLUGINS_ACTION: 'plugins.add',
     INFO_PACKAGE_ACTION: 'packages.info',
@@ -26,7 +26,7 @@ const apiHelper = {
      * @returns {string} The path for the specified action.
      */
     getPathForAction(action) {
-        apiHelper.checkIsValidAction(action);
+        APIHelper.checkIsValidAction(action);
         return action;
     },
 
@@ -43,7 +43,7 @@ const apiHelper = {
      */
     async makeRequest(action, packageId) {
         this.checkIsValidAction(action);
-        extensionKernel.log('debug', `Making request for "%b${action}%b" action.`);
+        ExtensionKernel.log('debug', `Making request for "%b${action}%b" action.`);
         
         try {
             const serverUrl = await sc4pacHelper.getServerUrl();
@@ -57,7 +57,7 @@ const apiHelper = {
             // If we're making a request with a package.
             if (packageId) {
                 // Check package is available on any listed channel.
-                channelUrl = await channelHelper.getChannelForPackage(packageId);
+                channelUrl = await ChannelHelper.getChannelForPackage(packageId);
                 if (!channelUrl) {
                     throw new Error('Package not found in any listed channel.');
                 }
@@ -114,16 +114,16 @@ const apiHelper = {
 
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-            extensionKernel.log('debug', `"${action}" request to sc4pac API successful:`, response);
+            ExtensionKernel.log('debug', `"${action}" request to sc4pac API successful:`, response);
             
             const responseBody = await response.json();
-            extensionKernel.log('debug', 'Response body:', responseBody);
+            ExtensionKernel.log('debug', 'Response body:', responseBody);
             return responseBody;
         } catch (error) {
             //if (error instanceof TypeError && error.message.includes('NetworkError')) extensionKernel.log('warn', `Server at ${serverUrl} is not responding. Make sure it's running.`);
             //extensionKernel.log('error', 'Unable to connect to sc4pac server:', error);
             
-            throw errorHandler.getCausedError('Unable to make request to API.', error);
+            throw ErrorHandler.getCausedError('Unable to make request to API.', error);
         }
     },
 }

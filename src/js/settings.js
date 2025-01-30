@@ -1,1 +1,1 @@
-settingsPageHelper.initPage();
+SettingsPageHelper.initPage();

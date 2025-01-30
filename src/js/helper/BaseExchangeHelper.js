@@ -1,4 +1,4 @@
-const baseExchangeHelper = {
+const BaseExchangeHelper = {
     // The sc4pac packages that are hosted on this exchange.
     packages: {},
 
@@ -11,7 +11,7 @@ const baseExchangeHelper = {
             return this.packages;
         }
         
-        this.packages = await exchangeHelper.getPackagesForExchange(this.EXCHANGE_ID);
+        this.packages = await ExchangeHelper.getPackagesForExchange(this.EXCHANGE_ID);
         return this.packages;
     },
 
@@ -35,12 +35,12 @@ const baseExchangeHelper = {
      */
     async isSupportedFile(fileIntId) {
         const packages = await this.getPackages();
-        if (!packages || !exchangeHelper.fileIsInPackageList(fileIntId, packages)) {
+        if (!packages || !ExchangeHelper.fileIsInPackageList(fileIntId, packages)) {
             return false;
         }
         
         const packageId = packages[fileIntId];
-        return channelHelper.packageHasChannel(packageId);
+        return ChannelHelper.packageHasChannel(packageId);
     },
 
     /**
@@ -69,7 +69,7 @@ const baseExchangeHelper = {
         
         if (this.buttonsAreDisplayed(mainFileIntId)) {
             this.adjustTitleElement(titleElement);
-            titleElement.appendChild(buttonHelper.createButtonGroup(packageId, 'main-buttons'));
+            titleElement.appendChild(ButtonHelper.createButtonGroup(packageId, 'main-buttons'));
         }
     },
 

@@ -1,4 +1,4 @@
-const logger = {
+const Logger = {
     STYLING_TAG: '%c',
     BOLD_STYLE_TAG: '%b',
 

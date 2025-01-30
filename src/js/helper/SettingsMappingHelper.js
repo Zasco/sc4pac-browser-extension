@@ -1,8 +1,8 @@
-const settingsMappingHelper = {
+const SettingsMappingHelper = {
     SETTINGS_INPUT_MAP: {
-        [settingsHelper.SETTINGS.SERVER_HOSTNAME]: settingsPageHelper.INPUT_IDS.HOSTNAME,
-        [settingsHelper.SETTINGS.SERVER_PORT]: settingsPageHelper.INPUT_IDS.PORT,
-        [settingsHelper.SETTINGS.CHANNELS]: settingsPageHelper.INPUT_IDS.CHANNELS
+        [SettingsHelper.SETTINGS.SERVER_HOSTNAME]: SettingsPageHelper.INPUT_IDS.HOSTNAME,
+        [SettingsHelper.SETTINGS.SERVER_PORT]: SettingsPageHelper.INPUT_IDS.PORT,
+        [SettingsHelper.SETTINGS.CHANNELS]: SettingsPageHelper.INPUT_IDS.CHANNELS
     },
 
     /**
@@ -37,13 +37,13 @@ const settingsMappingHelper = {
                 const inputId = this.getInputIdForSetting(setting);
                 return {
                     ...acc,
-                    [inputId]: setting === settingsHelper.SETTINGS.CHANNELS
+                    [inputId]: setting === SettingsHelper.SETTINGS.CHANNELS
                         ? this.stringifyChannelsArray(value)
                         : value
                 };
             }, {});
         } catch (error) {
-            errorHandler.getCausedError('Could not map settings to input values.', error);
+            ErrorHandler.getCausedError('Could not map settings to input values.', error);
         }
     },
 
@@ -59,13 +59,13 @@ const settingsMappingHelper = {
                 const setting = this.getSettingForInput(inputId);
                 return {
                     ...acc,
-                    [setting]: setting === settingsHelper.SETTINGS.CHANNELS
+                    [setting]: setting === SettingsHelper.SETTINGS.CHANNELS
                         ? this.parseChannelsString(value)
                         : value
                 };
             }, {});
         } catch (error) {
-            errorHandler.getCausedError('Could not map input values to settings.', error);
+            ErrorHandler.getCausedError('Could not map input values to settings.', error);
         }
     },
 
@@ -77,10 +77,10 @@ const settingsMappingHelper = {
     async setInputValuesFromSettings(settings) {
         try {
             const inputValues = this.mapSettingsToInputValues(settings);
-            await settingsPageHelper.setInputValues(inputValues);
+            await SettingsPageHelper.setInputValues(inputValues);
             return true;
         } catch (error) {
-            throw errorHandler.getCausedError('Could not set input values from settings.', error);
+            throw ErrorHandler.getCausedError('Could not set input values from settings.', error);
         }
     },
 
@@ -95,7 +95,7 @@ const settingsMappingHelper = {
         try {
             return channelsString.split('\n').filter(url => url.trim());
         } catch (error) {
-            throw errorHandler.getCausedError('Unable to parse channels string.', error);
+            throw ErrorHandler.getCausedError('Unable to parse channels string.', error);
         }
     },
 
@@ -109,7 +109,7 @@ const settingsMappingHelper = {
         try {
             return channelsArray.join('\n');
         } catch (error) {
-            throw errorHandler.getCausedError('Unable to stringify channels array.', error);
+            throw ErrorHandler.getCausedError('Unable to stringify channels array.', error);
         }
     },
 }

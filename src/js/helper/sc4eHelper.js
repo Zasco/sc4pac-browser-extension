@@ -1,5 +1,5 @@
 const sc4eHelper = {
-    ...baseExchangeHelper,
+    ...BaseExchangeHelper,
 
     EXCHANGE_ID: 'sc4e',
     EXCHANGE_HOSTNAME: 'www.sc4evermore.com',

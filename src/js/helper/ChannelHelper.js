@@ -1,4 +1,4 @@
-const channelHelper = {
+const ChannelHelper = {
     CONTENTS_FILE_NAME: 'sc4pac-channel-contents.json',
     
     channelsContents: {},
@@ -54,11 +54,11 @@ const channelHelper = {
         
         let channelUrls;
         try {
-            channelUrls = await settingsHelper.getSetting(settingsHelper.SETTINGS.CHANNELS);
+            channelUrls = await SettingsHelper.getSetting(SettingsHelper.SETTINGS.CHANNELS);
         } catch (error) {
             newError = new Error('Could not get channel URLs from settings.')
             newError.cause = error;
-            extensionKernel.log('error', newError);
+            ExtensionKernel.log('error', newError);
             throw newError;
         }
         
@@ -92,7 +92,7 @@ const channelHelper = {
             console.warn(`No channel found for package ${packageId}.`);
             return null;
         } catch (error) {
-            extensionKernel.log('error', `Error while getting channel for package %b${packageId}%b:`, error);
+            ExtensionKernel.log('error', `Error while getting channel for package %b${packageId}%b:`, error);
             return null;
         }
     },

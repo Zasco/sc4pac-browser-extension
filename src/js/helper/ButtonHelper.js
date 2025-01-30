@@ -1,4 +1,4 @@
-const buttonHelper = {
+const ButtonHelper = {
     MAIN_VIEW_BUTTON_ID: 'main-view-sc4pac-button',
     MAIN_ADD_BUTTON_ID: 'main-add-sc4pac-button',
     MAIN_REMOVE_BUTTON_ID: 'main-remove-sc4pac-button',
@@ -23,11 +23,11 @@ const buttonHelper = {
      * @returns {HTMLAnchorElement} The created button.
      */
     createActionButton(text, id, action) {
-        const button = uiHelper.createButton(text, id);
+        const button = UIHelper.createButton(text, id);
         const fullId = this.exchangeHelper.extractFileFullIdFromUrl(window.location.href);
         const intId = this.exchangeHelper.getIntIdFromFullId(fullId);
         
-        if (exchangeHelper.fileIsInPackageList(intId, this.exchangeHelper.packages)) {
+        if (ExchangeHelper.fileIsInPackageList(intId, this.exchangeHelper.packages)) {
             const packageId = this.exchangeHelper.packages[intId];
             this.attachClickHandler(button, packageId, action);
         }
@@ -42,7 +42,7 @@ const buttonHelper = {
         return this.createActionButton(
             'View on sc4pac', 
             this.MAIN_VIEW_BUTTON_ID, 
-            apiHelper.OPEN_PACKAGE_ACTION
+            APIHelper.OPEN_PACKAGE_ACTION
         );
     },
 
@@ -54,7 +54,7 @@ const buttonHelper = {
         return this.createActionButton(
             'Add to sc4pac', 
             this.MAIN_ADD_BUTTON_ID, 
-            apiHelper.ADD_PLUGINS_ACTION
+            APIHelper.ADD_PLUGINS_ACTION
         );
     },
 
@@ -66,7 +66,7 @@ const buttonHelper = {
         return this.createActionButton(
             'Remove from sc4pac', 
             this.MAIN_REMOVE_BUTTON_ID, 
-            apiHelper.REMOVE_PLUGIN_ACTION
+            APIHelper.REMOVE_PLUGIN_ACTION
         );
     },
 
@@ -77,17 +77,17 @@ const buttonHelper = {
      * @returns {HTMLElement} The created button group container.
      */
     createButtonGroup(packageId, groupId) {
-        const btnGroup = uiHelper.createContainer(groupId, 'btn-group');
+        const btnGroup = UIHelper.createContainer(groupId, 'btn-group');
         btnGroup.appendChild(this.createViewButton());
 
         // Determine wether to add "add" or "remove" button.
         sc4pacHelper.packageIsExplicitlyAdded(packageId).then(isAdded => {
             if (isAdded) {
                 btnGroup.appendChild(this.createRemoveButton());
-                extensionKernel.log('info', `Added "%bremove%b" button as package %b${packageId}%b is explicitely added.`);
+                ExtensionKernel.log('info', `Added "%bremove%b" button as package %b${packageId}%b is explicitely added.`);
             } else {
                 btnGroup.appendChild(this.createAddButton());
-                extensionKernel.log('info', `Added "%badd%b" button as package %b${packageId}%b is not explicitely added.`);
+                ExtensionKernel.log('info', `Added "%badd%b" button as package %b${packageId}%b is not explicitely added.`);
             }
         });
         
@@ -104,7 +104,7 @@ const buttonHelper = {
         button.addEventListener('click', async (e) => {
             e.preventDefault();
             try {
-                apiHelper.makeRequest(action, packageId);
+                APIHelper.makeRequest(action, packageId);
             } catch (error) {
                 console.warn(`Error while making request for "${action}" action for package "${packageId}".`, error);
             }

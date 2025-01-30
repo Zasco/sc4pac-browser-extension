@@ -1,4 +1,4 @@
-const settingsHelper = {
+const SettingsHelper = {
     SETTINGS: {
         SERVER_HOSTNAME: 'server-hostname',
         SERVER_PORT: 'server-port',
@@ -42,7 +42,7 @@ const settingsHelper = {
                 : chrome.storage.sync
             ;
         } catch (error) {
-            throw errorHandler.getCausedError('Storage API could not be retreived.', error);
+            throw ErrorHandler.getCausedError('Storage API could not be retreived.', error);
         }
     },
 
@@ -79,7 +79,7 @@ const settingsHelper = {
             
             return true;
         } catch (error) {
-            throw errorHandler.getCausedError('Unable to validate provided settings.', error);
+            throw ErrorHandler.getCausedError('Unable to validate provided settings.', error);
         }
     },
     
@@ -98,7 +98,7 @@ const settingsHelper = {
                 throw new Error('The provided settings are not valid.')
             }
         } catch (error) {
-            throw errorHandler.getCausedError('The provided settings could not be saved to storage.', error);
+            throw ErrorHandler.getCausedError('The provided settings could not be saved to storage.', error);
         }
 
     },
@@ -120,7 +120,7 @@ const settingsHelper = {
             
             return await this.getStorage().get(settingsToGet);
         } catch (error) {
-            throw errorHandler.getCausedError('Error while getting settings from storage.', error);
+            throw ErrorHandler.getCausedError('Error while getting settings from storage.', error);
         }
     },
 
@@ -135,7 +135,7 @@ const settingsHelper = {
             const settings = await this.getSettings();
             return settings[setting];
         } catch (error) {
-            throw errorHandler.getCausedError(`Unable to retrieve "${setting}" from settings storage.`);
+            throw ErrorHandler.getCausedError(`Unable to retrieve "${setting}" from settings storage.`);
         }
     },
 
@@ -150,7 +150,7 @@ const settingsHelper = {
             
             return true;
         } catch (error) {
-            throw errorHandler.getCausedError('Error while saving default settings.', error);
+            throw ErrorHandler.getCausedError('Error while saving default settings.', error);
         }
     },
 };

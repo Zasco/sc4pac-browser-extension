@@ -1,1 +1,1 @@
-extensionKernel.boot();
+ExtensionKernel.boot();
