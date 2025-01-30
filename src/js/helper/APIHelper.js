@@ -89,14 +89,14 @@ const APIHelper = {
                 case this.ADD_PLUGINS_ACTION:
                 case this.REMOVE_PLUGIN_ACTION:
                     // Makes the request for the default profile. To be improved...
-                    endpoint.searchParams.append('profile', this.DEFAULT_PROFILE);
+                    endpoint.searchParams.append('profile', String(this.DEFAULT_PROFILE));
                     payload = [packageId];
                     break;
                 
                 case this.INFO_PACKAGE_ACTION:
                     endpoint.searchParams.append('pkg', packageId);
                     // Makes the request for the default profile. To be improved...
-                    endpoint.searchParams.append('profile', this.DEFAULT_PROFILE);
+                    endpoint.searchParams.append('profile', String(this.DEFAULT_PROFILE));
                     break;
             }
             
