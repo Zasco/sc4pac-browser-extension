@@ -26,7 +26,7 @@ const APIHelper = {
      * @returns {string} The path for the specified action.
      */
     getPathForAction(action) {
-        APIHelper.checkIsValidAction(action);
+        this.checkIsValidAction(action);
         return action;
     },
 
