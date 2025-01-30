@@ -1,4 +1,6 @@
-const ErrorHandler = {
+import SettingsPageHelper from './helper/SettingsPageHelper.js';
+
+export default {
     getCausedError(message, originalError) {
         const causedError = new Error(message);
         causedError.cause = originalError;

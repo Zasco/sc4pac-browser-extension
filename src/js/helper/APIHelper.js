@@ -1,5 +1,11 @@
 // See https://memo33.github.io/sc4pac/#/api
-const APIHelper = {
+import ErrorHandler from "../ErrorHandler.js";
+
+import ExtensionKernel from "../ExtensionKernel.js";
+import sc4pacHelper from "./sc4pacHelper.js";
+import ChannelHelper from "./ChannelHelper.js";
+
+export default {
     OPEN_PACKAGE_ACTION: 'packages.open',
     ADD_PLUGINS_ACTION: 'plugins.add',
     INFO_PACKAGE_ACTION: 'packages.info',

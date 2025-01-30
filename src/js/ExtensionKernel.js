@@ -1,4 +1,12 @@
-const ExtensionKernel = {
+import Logger from "./Logger.js";
+
+import sc4pacHelper from "./helper/sc4pacHelper.js";
+import ExchangeHelper from "./helper/ExchangeHelper.js";
+import stHelper from "./helper/stHelper.js";
+import sc4eHelper from "./helper/sc4eHelper.js";
+import ButtonHelper from "./helper/ButtonHelper.js";
+
+export default {
     /**
      * Get the log prefix for the extension.
      * @returns {string} The log prefix for the extension.

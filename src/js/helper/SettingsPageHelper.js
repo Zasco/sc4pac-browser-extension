@@ -1,13 +1,10 @@
-const SettingsPageHelper = {
-    FORM_ID: 'settings-form',
-    INPUT_IDS: {
-        HOSTNAME: SettingsHelper.SETTINGS.SERVER_HOSTNAME, 
-        PORT: SettingsHelper.SETTINGS.SERVER_PORT, 
-        CHANNELS: SettingsHelper.SETTINGS.CHANNELS, 
-    },
-    RESTORE_BUTTON_ID: 'restore-button',
-    RESET_BUTTON_ID: 'reset-button',
-    
+import ErrorHandler from '../ErrorHandler.js';
+
+import SettingsHelper from './SettingsHelper.js';
+import SettingsMappingHelper from './SettingsMappingHelper.js';
+import SettingsPageConfig from '../config/SettingsPageConfig.js';
+
+export default {
     STATUS_CONTAINER_ID: 'status-container',
     STATUS_DISPLAY_TIMEOUT: 2500,
     STATUS_SUCCESS: 'success',
@@ -88,9 +85,9 @@ const SettingsPageHelper = {
             this.setPlaceholders();
 
             const settingsValidity = SettingsHelper.SETTINGS_VALIDITY;
-            this.getElement(this.INPUT_IDS.HOSTNAME).setAttribute('pattern', settingsValidity[SettingsHelper.SETTINGS.SERVER_HOSTNAME]['pattern']);
-            this.getElement(this.INPUT_IDS.PORT).setAttribute('min', settingsValidity[SettingsHelper.SETTINGS.SERVER_PORT]['min']);
-            this.getElement(this.INPUT_IDS.PORT).setAttribute('max', settingsValidity[SettingsHelper.SETTINGS.SERVER_PORT]['max']);
+            this.getElement(SettingsPageConfig.INPUT_IDS.HOSTNAME).setAttribute('pattern', settingsValidity[SettingsHelper.SETTINGS.SERVER_HOSTNAME]['pattern']);
+            this.getElement(SettingsPageConfig.INPUT_IDS.PORT).setAttribute('min', settingsValidity[SettingsHelper.SETTINGS.SERVER_PORT]['min']);
+            this.getElement(SettingsPageConfig.INPUT_IDS.PORT).setAttribute('max', settingsValidity[SettingsHelper.SETTINGS.SERVER_PORT]['max']);
             
             this.initChannelsInput();
 
@@ -110,7 +107,7 @@ const SettingsPageHelper = {
      */
     initChannelsInput() {
         try {
-            const channelsInput = this.getElement(this.INPUT_IDS.CHANNELS);
+            const channelsInput = this.getElement(SettingsPageConfig.INPUT_IDS.CHANNELS);
             const urlPattern = new RegExp(SettingsHelper.SETTINGS_VALIDITY[SettingsHelper.SETTINGS.CHANNELS].pattern);
         
             channelsInput.addEventListener('input', () => {
@@ -131,7 +128,7 @@ const SettingsPageHelper = {
     
             return true;
         } catch (error) {
-            console.warn(`Could not initialize "${this.INPUT_IDS.CHANNELS}" input.`, error);
+            console.warn(`Could not initialize "${SettingsPageConfig.INPUT_IDS.CHANNELS}" input.`, error);
             return false;
         }
     },
@@ -210,7 +207,7 @@ const SettingsPageHelper = {
      */
     initRestoreButton() {
         return this.initButton(
-            this.RESTORE_BUTTON_ID, 
+            SettingsPageConfig.RESTORE_BUTTON_ID, 
             () => this.restoreSettingsToInputs()
         );
     },
@@ -221,7 +218,7 @@ const SettingsPageHelper = {
      */
     initResetButton() {
         return this.initButton(
-            this.RESET_BUTTON_ID, 
+            SettingsPageConfig.RESET_BUTTON_ID, 
             () => this.resetSettings()
         );
     },
@@ -384,8 +381,8 @@ const SettingsPageHelper = {
      * @throws {Error} If the element is not a form.
      */
     getFormElement() {
-        const form = this.getElement(this.FORM_ID);
-        if (!(form instanceof HTMLFormElement)) throw new Error(`Element with id "${this.FORM_ID}" is not a form element.`);
+        const form = this.getElement(SettingsPageConfig.FORM_ID);
+        if (!(form instanceof HTMLFormElement)) throw new Error(`Element with id "${SettingsPageConfig.FORM_ID}" is not a form element.`);
         return form;
     },
 
@@ -395,7 +392,7 @@ const SettingsPageHelper = {
      */
     getInputElements() {
         return Object.fromEntries(
-            Object.values(this.INPUT_IDS)
+            Object.values(SettingsPageConfig.INPUT_IDS)
                 .map(id => [id, this.getElement(id)])
         );
     },
@@ -433,7 +430,7 @@ const SettingsPageHelper = {
     getInputValues() {
         try {
             return Object.fromEntries(
-                Object.values(this.INPUT_IDS)
+                Object.values(SettingsPageConfig.INPUT_IDS)
                     .map(id => [id, this.getInputValue(id)])
             );
         } catch (error) {

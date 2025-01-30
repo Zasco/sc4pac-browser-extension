@@ -1,4 +1,4 @@
-const Logger = {
+export default {
     STYLING_TAG: '%c',
     BOLD_STYLE_TAG: '%b',
 

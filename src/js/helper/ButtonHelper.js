@@ -1,4 +1,10 @@
-const ButtonHelper = {
+import ExchangeHelper from "./ExchangeHelper.js";
+import APIHelper from "./APIHelper.js";
+import sc4pacHelper from "./sc4pacHelper.js";
+import ExtensionKernel from "../ExtensionKernel.js";
+import UIHelper from "./UIHelper.js";
+
+export default {
     MAIN_VIEW_BUTTON_ID: 'main-view-sc4pac-button',
     MAIN_ADD_BUTTON_ID: 'main-add-sc4pac-button',
     MAIN_REMOVE_BUTTON_ID: 'main-remove-sc4pac-button',

@@ -1,4 +1,8 @@
-const ChannelHelper = {
+import ExtensionKernel from "../ExtensionKernel.js";
+import sc4pacHelper from "./sc4pacHelper.js";
+import SettingsHelper from "./SettingsHelper.js";
+
+export default {
     CONTENTS_FILE_NAME: 'sc4pac-channel-contents.json',
     
     channelsContents: {},

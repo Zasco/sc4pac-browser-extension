@@ -1,4 +1,8 @@
-const ExchangeHelper = {
+import stHelper from './stHelper.js';
+import sc4eHelper from './sc4eHelper.js';
+import SebaHelper from './SebaHelper.js';
+
+export default {
     /**
      * Function to get exchange ID from hostname
      * @param {string} hostname - The hostname to get the exchange ID for.
