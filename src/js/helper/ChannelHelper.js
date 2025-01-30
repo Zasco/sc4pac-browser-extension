@@ -56,7 +56,7 @@ const ChannelHelper = {
         try {
             channelUrls = await SettingsHelper.getSetting(SettingsHelper.SETTINGS.CHANNELS);
         } catch (error) {
-            newError = new Error('Could not get channel URLs from settings.')
+            const newError = new Error('Could not get channel URLs from settings.')
             newError.cause = error;
             ExtensionKernel.log('error', newError);
             throw newError;
