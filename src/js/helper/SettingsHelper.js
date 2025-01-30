@@ -135,7 +135,7 @@ const SettingsHelper = {
             const settings = await this.getSettings();
             return settings[setting];
         } catch (error) {
-            throw ErrorHandler.getCausedError(`Unable to retrieve "${setting}" from settings storage.`);
+            throw ErrorHandler.getCausedError(`Unable to retrieve "${setting}" from settings storage.`, error);
         }
     },
 
