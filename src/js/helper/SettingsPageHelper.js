@@ -18,7 +18,7 @@ const SettingsPageHelper = {
     
     /**
      * Initializes the settings page functionalities.
-     * @returns {<boolean>} If the settings page functionalities were initialized successfully.
+     * @returns {boolean} If the settings page functionalities were initialized successfully.
      */
     initPage() {
         document.addEventListener('DOMContentLoaded', async () => {
@@ -40,13 +40,12 @@ const SettingsPageHelper = {
                     this.addToStatusQueue('Settings save failed.', this.STATUS_FAIL);
                 }) */
 
-                console.info(`Settings page successfuly initialized.`)
-                return true;
+                console.info(`Settings page successfuly initialized.`);
             } catch (error) {
                 console.warn(`Settings page could not be initialized.`, error);
-                return false;
             }
         });
+        return true;
     },
 
     /**
