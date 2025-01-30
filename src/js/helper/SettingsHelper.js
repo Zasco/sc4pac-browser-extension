@@ -90,7 +90,7 @@ const SettingsHelper = {
      * @throws {Error} If there was an error while saving the settings to storage.
      */
     async saveSettings(settings) {
-        try {throw new Error()
+        try {
             if (this.validateSettings(settings)) {
                 await this.getStorage().set(settings);
                 return true;
