@@ -41,7 +41,7 @@ const APIHelper = {
      * @param {string} action - The action to make the request for.
      * @param {string|undefined} packageId - The package to make the request for.
      */
-    async makeRequest(action, packageId) {
+    async makeRequest(action, packageId = undefined) {
         this.checkIsValidAction(action);
         ExtensionKernel.log('debug', `Making request for "%b${action}%b" action.`);
         
