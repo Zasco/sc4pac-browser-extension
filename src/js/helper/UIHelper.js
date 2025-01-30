@@ -1,4 +1,4 @@
-const UIHelper = {
+export default {
     EXTENSION_CLASS: 'sc4pac-be',
     
     /**

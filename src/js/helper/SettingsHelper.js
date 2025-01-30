@@ -1,4 +1,6 @@
-const SettingsHelper = {
+import ErrorHandler from "../ErrorHandler.js";
+
+export default {
     SETTINGS: {
         SERVER_HOSTNAME: 'server-hostname',
         SERVER_PORT: 'server-port',

@@ -1,8 +1,14 @@
-const SettingsMappingHelper = {
+import ErrorHandler from '../ErrorHandler.js';
+
+import SettingsHelper from './SettingsHelper.js';
+import SettingsPageHelper from './SettingsPageHelper.js';
+import SettingsPageConfig from '../config/SettingsPageConfig.js';
+
+export default {
     SETTINGS_INPUT_MAP: {
-        [SettingsHelper.SETTINGS.SERVER_HOSTNAME]: SettingsPageHelper.INPUT_IDS.HOSTNAME,
-        [SettingsHelper.SETTINGS.SERVER_PORT]: SettingsPageHelper.INPUT_IDS.PORT,
-        [SettingsHelper.SETTINGS.CHANNELS]: SettingsPageHelper.INPUT_IDS.CHANNELS
+        [SettingsHelper.SETTINGS.SERVER_HOSTNAME]: SettingsPageConfig.INPUT_IDS.HOSTNAME,
+        [SettingsHelper.SETTINGS.SERVER_PORT]: SettingsPageConfig.INPUT_IDS.PORT,
+        [SettingsHelper.SETTINGS.CHANNELS]: SettingsPageConfig.INPUT_IDS.CHANNELS
     },
 
     /**

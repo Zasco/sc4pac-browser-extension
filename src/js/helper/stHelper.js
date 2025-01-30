@@ -1,4 +1,6 @@
-const stHelper = {
+import BaseExchangeHelper from "./BaseExchangeHelper.js";
+
+export default {
     ...BaseExchangeHelper,
 
     EXCHANGE_ID: 'st',

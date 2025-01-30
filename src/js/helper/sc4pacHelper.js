@@ -1,4 +1,10 @@
-const sc4pacHelper = {
+import ErrorHandler from "../ErrorHandler.js";
+
+import ExtensionKernel from "../ExtensionKernel.js";
+import APIHelper from "./APIHelper.js";
+import SettingsHelper from "./SettingsHelper.js"
+
+export default {
     /**
      * Gets the formatted server URL with protocol and port.
      * @returns {Promise<string>} The complete server URL (e.g., "http://localhost:51515").

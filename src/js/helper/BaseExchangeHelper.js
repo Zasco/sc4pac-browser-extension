@@ -1,4 +1,8 @@
-const BaseExchangeHelper = {
+import ExchangeHelper from "./ExchangeHelper.js";
+import ChannelHelper from "./ChannelHelper.js";
+import ButtonHelper from "./ButtonHelper.js";
+
+export default {
     // The sc4pac packages that are hosted on this exchange.
     packages: {},
 
