@@ -17,7 +17,7 @@
     "https://*/*/channel/sc4pac-channel-contents.json"
   ],
   "options_ui": {
-    "page": "html/settings.html",
+    "page": "src/html/settings.html",
     "browser_style": true
   },
   "content_scripts": [
@@ -26,9 +26,9 @@
         "https://community.simtropolis.com/files/file/*",
         "https://www.sc4evermore.com/index.php/downloads/download/*"
       ],
-      "css": ["css/extension.css"],
+      "css": ["src/css/extension.css"],
       "js": [
-        "js/extension.js"
+        "src/js/extension.js"
       ]
     }
   ]
