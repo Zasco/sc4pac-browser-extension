@@ -65,7 +65,7 @@ This ensures the extension can communicate with your local *sc4pac* installation
 - Swap add/remove buttons.
 - Use configuration from profiles.
 - Add server API version support.
-- Use file IDs from channels instead of from **sebarynissen/sc4pac-helpers**.
+- Use file IDs from channels instead of from **sebarynissen/sc4pac-helpers** (see https://github.com/sebamarynissen/sc4pac-helpers/issues/4#issuecomment-2564487277).
 - Add caching of fetched contents.
 
 ### Package reference detection
