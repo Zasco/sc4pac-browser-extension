@@ -3,6 +3,6 @@
     "version": "0.1.0",
     "type": "module",
     "scripts": {
-        "postinstall": "node scripts/postinstall.js"
+        "postinstall": "node scripts/setup-vendor.js"
     }
 }
