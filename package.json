@@ -4,5 +4,8 @@
     "type": "module",
     "scripts": {
         "postinstall": "node scripts/setup-vendor.js"
+    },
+    "dependencies": {
+        "javascript-framework": "github:Zasco/javascript-framework"
     }
 }
